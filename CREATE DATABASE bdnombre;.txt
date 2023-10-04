@@ -1,0 +1,21 @@
+CREATE DATABASE bdnombre;
+
+use bdnombre;
+
+CREATE TABLE DatosTienda
+(
+IdDatosTienda int primary key not null,
+Nombre varchar (45) not null,
+Apellido varchar (45) not null,
+Edad int not null,
+Direccion_Residencia varchar (50),
+RUC varchar (45) not null
+);
+
+CREATE TABLE Tienda2
+(
+IdTienda2 int primary key not null,
+Nombre varchar (45) not null,
+Apellido varchar (45) not null,
+Celular varchar (45)
+);
