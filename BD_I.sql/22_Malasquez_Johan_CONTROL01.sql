@@ -1,0 +1,153 @@
+/*Crear base de datos dbElectrodomesticos*/
+DROP DATABASE IF EXISTS dbElectrodomesticos;
+CREATE DATABASE dbElectrodomesticos
+DEFAULT CHARACTER SET utf8;
+
+/*Poner en uso la base de datos*/
+USE dbElectrodomesticos;
+
+/*Crear la tabla CLIENTE*/
+CREATE TABLE CLIENTE
+(
+ CODCLI char(4),
+ NOMCLI varchar(60),
+ APECLI varchar(80),
+ EMACLI varchar(80),
+ CELCLI char(9),
+ DIRCLI varchar(70),
+ ESTCLI char(1)
+);
+
+/*Crear la tabla VENDEDOR*/
+CREATE TABLE VENDEDOR
+(
+ CODVEND char(4),
+ NOMVEND varchar(60),
+ APEVEND varchar(80),
+ EMAVEND varchar(80),
+ CELVEND char(9),
+ DIRVEND varchar(70),
+ ESTVEND char(1)
+);
+
+/*Crear la tabla PRODUCTO*/
+CREATE TABLE PRODUCTO
+(
+ CODPRO char(5),
+ DESCPRO varchar(80),
+ CATPRO char(1),
+ PREPRO decimal(8.2),
+ STOCKPRO int,
+ ESTPRO char(1)
+);
+
+/*Crear la tabla PROVEEDOR*/
+CREATE TABLE PROVEEDOR
+(
+ CODPROV char(5),
+ RAZSOCPROV varchar(90),
+ RUCPROV varchar(11),
+ EMAPROV varchar(70),
+ ESTPROV char(1)
+);
+
+/*Crear la tabla VENTA*/
+CREATE TABLE VENTA
+(
+ CODVEN char(5),
+ FECVEN datetime,
+ CODCLI char(4),
+ CODVEND char(4),
+ ESTVEN char(1)
+);
+
+/*Crear la tabla VENTADETALLE*/
+CREATE TABLE VENTADETALLE
+(
+ IDVENDET int,
+ CODVEN char(5),
+ CADPRO char(5),
+ CANTPRO int
+);
+
+/*Crear la tabla COMPRA*/
+CREATE TABLE COMPRA
+(
+ CODCOM char(5),
+ FECCOM datetime,
+ CODVEND char(4),
+ CODPROV char(5),
+ ESTCOM char(1)
+);
+
+/*Crear la tabla COMPRADETALLE*/
+CREATE TABLE COMPRADETALLE
+(
+ IDCOMDET int, 
+ CODCOM char(5),
+ CODPRO char(5),
+ CANTPRO int
+);
+
+/*CREAR COMO CLAVE PRIMARIA*/
+ALTER TABLE CLIENTE
+ ADD PRIMARY KEY (CODCLI);
+
+/*Crear relación entre las tablas*/
+ALTER TABLE VENTA
+ ADD CONSTRAINT FK_VENTA_CLIENTE
+ FOREIGN KEY (CODCLI)
+ REFERENCES CLIENTE(CODCLI);
+
+/*CREAR COMO CLAVE PRIMARIA*/ 
+ALTER TABLE VENDEDOR
+ ADD PRIMARY KEY (CODVEND);
+ 
+/*Crear relación entre las tablas*/ 
+ALTER TABLE VENTA
+ADD CONSTRAINT FK_VENTA_VENDEDOR
+FOREIGN KEY (CODVEND)
+REFERENCES VENDEDOR(CODVEND);
+
+/*CREAR COMO CLAVE PRIMARIA*/
+ALTER TABLE PRODUCTO
+ADD PRIMARY KEY (CODPRO);
+
+/*Crear relación entre las tablas*/
+ALTER TABLE VENTADETALLE
+ADD CONSTRAINT FK_VENTADETALLE_PRODUCTO
+FOREIGN KEY (CADPRO)
+REFERENCES PRODUCTO(CODPRO);
+
+/*CREAR COMO CLAVE PRIMARIA*/
+ALTER TABLE PROVEEDOR
+ADD PRIMARY KEY (CODPROV);
+
+/*Crear relación entre las tablas*/
+ALTER TABLE COMPRA
+ADD CONSTRAINT FK_COMPRA_PROVEEDOR
+FOREIGN KEY (CODPROV)
+REFERENCES PROVEEDOR(CODPROV);
+
+/*CREAR COMO CLAVE PRIMARIA*/
+ALTER TABLE COMPRADETALLE
+ADD PRIMARY KEY (CODPRO);
+
+/*Crear relación entre las tablas*/
+ALTER TABLE COMPRADETALLE
+ADD CONSTRAINT FK_COMPRADETALLE_PRODUCTO
+FOREIGN KEY (CODPRO)
+REFERENCES PRODUCTO(CODPRO);
+
+/* Listar relaciones de tablas de la base de datos activa */
+SELECT 
+    i.constraint_name, k.table_name, k.column_name, 
+    k.referenced_table_name, k.referenced_column_name
+FROM 
+    information_schema.TABLE_CONSTRAINTS i 
+LEFT JOIN information_schema.KEY_COLUMN_USAGE k 
+ON i.CONSTRAINT_NAME = k.CONSTRAINT_NAME 
+WHERE i.CONSTRAINT_TYPE = 'FOREIGN KEY' 
+AND i.TABLE_SCHEMA = DATABASE();
+
+DROP DATABASE dbelectrodomesticos;
