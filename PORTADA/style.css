@@ -1,0 +1,162 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+nav {
+    background: black;
+    color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+}
+
+.logo {
+    font-size: 12px;
+    padding: 10px;
+}
+
+nav .mainMenu {
+    display: flex;
+    list-style: none;
+}
+
+nav .mainMenu li a {
+    display: inline-block;
+    padding: 15px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    transition: 0.2s ease;
+}
+
+nav .mainMenu li a:hover {
+    background: rgb(255, 94, 0);
+    border-radius: 20px;
+}
+
+nav .openMenu {
+    font-size: 2rem;
+    margin: 20px;
+    display: none;
+    cursor: pointer;
+}
+
+nav .mainMenu .closeMenu,
+.icons i {
+    font-size: 2rem;
+    display: none;
+    cursor: pointer;
+}
+
+nav .logo {
+    margin: 6px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.container{
+    position: relative;
+}
+
+.container img{
+    width: 100%;
+    height: auto;
+}
+
+.overlay{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.overlay img{
+    width: 200px;
+    height: auto;
+    margin-top: 20px;
+}
+
+.overlay h2{
+    color: #000050;
+    font-size: 5vw;
+    font-family: Arial black;
+    -webkit-text-stroke: 3px #FFFFFF;
+}
+
+.overlay p{
+    color: #000050;
+    font-size: 3vw;
+    font-family: Arial black;
+    -webkit-text-stroke: 2px #FFFFFF;
+}
+
+.mainMenu > li:hover .children {
+    display: block;
+}
+
+.children {
+    position: absolute;
+    background: black;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid white;
+    display: none;
+    z-index: 2;
+}
+
+.children li {
+    padding: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    nav .mainMenu {
+        flex-direction: column;
+        position: fixed;
+        top: 60px;
+        left: -100%;
+        width: 100%;
+        background-color: black;
+        transition: left 0.3s ease;
+    }
+
+    nav .mainMenu.active {
+        left: 0;
+    }
+
+    nav .mainMenu li {
+        text-align: center;
+    }
+
+    nav .mainMenu li a {
+        padding: 15px 0; /* Ajusta el relleno vertical */
+        font-size: 18px;
+        color: white; /* Cambia el color del texto */
+        text-decoration: none;
+        display: block; /* Muestra los elementos como bloques para que ocupen toda la anchura */
+        border-bottom: 1px solid white; /* Agrega un borde inferior para separar los elementos */
+    }
+
+    nav .openMenu {
+        display: block;
+    }
+
+    nav .mainMenu .closeMenu,
+    .icons i {
+        display: block;
+    }
+}
