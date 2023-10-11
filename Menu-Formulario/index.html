@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <form>
+            <div class="form-content">
+                <div class="form-image">
+                    <img src="IMAGE/Logo-VG_Tpt02.png" alt="logo_VG">
+                </div>
+                <div>
+                    <div class="form-fields">
+                        <h2>BIENVENIDOS</h2>
+                        <input type="radio" name="interes" value="analisis-sistema"> Analisis de Sistema
+                        <input type="radio" name="interes" value="producto-agraria"> Producción Agraria
+                    </div>
+                    <div class="flex-container">
+                        <input type="text" id="NombreCompleto" name="NombreCompleto" placeholder="Nombre Completo" pattern="[A-Za-z\s]+" required>>
+                        <input type="text" id="Apellidos" name="Apellidos" placeholder="Apellidos" pattern="[A-Za-z\s]+" required>
+                        <input type="text" id="Edad" name="Edad" placeholder="Edad" min="0" required>
+                        <input type="text" id="Correo" name="Correo" placeholder="Correo" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+                        <input type="password" id="Contraseña" name="Contraseña" placeholder="Contraseña">
+                        <a href="">¿Olvidó su contraseña?</a>
+                        <input type="checkbox" name="interes" value="producto-agraria"> Aceptar la política de privacidad y los términos y
+                        condiciones
+                        <input type="submit" value="REGISTRAR">
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</body>
+</html>
